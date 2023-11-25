@@ -13,14 +13,14 @@ fetch(URL, { method: "GET" })
     .then((data) => {
       console.log(data)
 
-        for (let i = 0; i < data.hourly.temperature_2m.length; i++) {
+      data.hourly.temperature_2m.forEach((temperature_2m , i) =>  {
          const row = document.createElement("tr");
 
          const tempCell = document.createElement("td");
          tempCell.innerText = data.hourly.temperature_2m[i] + "°C";
 
          const timeCell = document.createElement("td");
-         timeCell.innerText = dateFormatter.format(new Date(data.hourly.time[i]));
+         timeCell.innerText = dateFormatter.format(new Date(temperature_2m));
 
          row.appendChild(timeCell);
 
@@ -28,4 +28,5 @@ fetch(URL, { method: "GET" })
 
          tableBody.appendChild(row);
        }
-    });
+    )});
+  
